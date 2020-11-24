@@ -36,22 +36,12 @@ void ineff()
 
 void eff()
 {
-    int n = 0;
-    int mx = 0;
-    cin >> n;
-    vector<int> nums(n, 0);
-    for (int i = 0; i< n; i++)
-        cin >> nums[i];
-    for (int i = 0; i < n; i++)
-        for(int j = 1; j < n; j+ 6)
-            if((nums[i] + nums[j]) % 19 == 0)
-                mx = max(mx, nums[i] + nums[j]);
-    cout << mx << endl;
+    
 }
 
 int main()
 {
-    /*int mode(0);
+    int mode(0);
     cin >> mode;
     switch(mode)
     {
@@ -59,14 +49,6 @@ int main()
         case 1: ineff(); break;
         case 2: eff; break;
         default: cout << "ERROR" << endl;
-
-    }*/
-ofstream f1("data.txt");
-f1 << 5;
-f1.close();
-ifstream f2("data.txt");
-int k = 0;
-f2 >> k;
-cout << k << endl;
-f2.close();
+    
+    }
 }
