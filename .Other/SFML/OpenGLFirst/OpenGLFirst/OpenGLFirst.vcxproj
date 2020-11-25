@@ -166,6 +166,7 @@
     <ClCompile Include="Game.h" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Основа.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
