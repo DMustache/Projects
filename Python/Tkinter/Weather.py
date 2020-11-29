@@ -34,12 +34,12 @@ frame_top.place(relx=0.15, rely=0.15, relwidth=0.7, relheight=0.25)
 frame_bottom = Frame(root, bg='#ffb700', bd=5)
 frame_bottom.place(relx=0.15, rely=0.55, relwidth=0.7, relheight=0.1)
 
-
 cityField = Entry(frame_top, bg='white', font=30)
 cityField.pack()
 
 btn = Button(frame_top, text='Watch weather', command=get_weather)
 btn.pack()
+root.bind('<Return>', lambda event=None: btn.invoke())
 
 info = Label(frame_bottom, text='Weather info', bg='#ffb700', font=40)
 info.pack()
