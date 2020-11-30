@@ -1,3 +1,12 @@
+from tkinter import Tk
+from tkinter import Frame
+from tkinter import CENTER
+from tkinter import TOP
+from tkinter import LabelFrame
+from tkinter import Entry
+
+root = Tk()
+
 root['bg'] = '#000000'
 root.title('Calculator')
 root.geometry('300x250')
@@ -13,3 +22,5 @@ ftnum.place()
 
 fsnum = Entry(width=7, bg='#A35151', fg='#FDFCFD', justify=CENTER, font=30)
 fsnum.place()
+
+root.mainloop()
