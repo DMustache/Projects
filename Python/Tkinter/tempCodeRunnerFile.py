@@ -1,26 +1,5 @@
-from tkinter import Tk
-from tkinter import Frame
-from tkinter import CENTER
-from tkinter import TOP
-from tkinter import LabelFrame
-from tkinter import Entry
+write = Text(frame_bottom, width=25, height=15)
+# write.pack(side=LEFT)
 
-root = Tk()
-
-root['bg'] = '#000000'
-root.title('Calculator')
-root.geometry('300x250')
-
-root.resizable(width=False, height=False)
-
-entry = Frame(root, bg='yellow', width=30, height=10)
-entry = LabelFrame(text='Write numbers')
-entry.pack(side=TOP)
-
-ftnum = Entry(width=7, bg='#A35151', fg='#FDFCFD', justify=CENTER, font=30)
-ftnum.place()
-
-fsnum = Entry(width=7, bg='#A35151', fg='#FDFCFD', justify=CENTER, font=30)
-fsnum.place()
-
-root.mainloop()
+# take = Text(frame_bottom, width=25, height=15)
+# take.pack(side=RIGHT)

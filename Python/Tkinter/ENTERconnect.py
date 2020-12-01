@@ -1,20 +1,16 @@
-from tkinter import Tk
-from tkinter import Label
-
+from tkinter import *
 root = Tk()
 
 root['bg'] = '#fafafa'
 root.title('Enter Check')
-root.geometry('300x250')
+root.geometry('450x350')
 
 root.resizable(width=False, height=False)
 
-def callback(event):
-    label['text'] = 'You ptressed Enter'
+write = Text(root, width=20, height=15)
+write.place(relx=0.05)
 
-root.bind('<Return>', callback)
-
-label = Label(root, text='')
-label.pack()
+take = Text(root, width=20, height=15)
+take.place(relx=0.64)
 
 root.mainloop()
