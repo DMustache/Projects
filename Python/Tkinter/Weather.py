@@ -10,17 +10,19 @@ import requests
 root = Tk()
 
 def get_weather():
-    city = cityField.get()
+    try:
+        city = cityField.get()
 
-    key = '797261b25ff6a499d71adea747c337cf'
-    url = 'http://api.openweathermap.org/data/2.5/weather'
+        key = '797261b25ff6a499d71adea747c337cf'
+        url = 'http://api.openweathermap.org/data/2.5/weather'
 
-    params = {'APPID': key, 'q': city, 'units': 'metric'}
-    result = requests.get(url, params=params)
-    weather = result.json()
+        params = {'APPID': key, 'q': city, 'units': 'metric'}
+        result = requests.get(url, params=params)
+        weather = result.json()
     
-    info['text'] = f'{str(weather["name"])}: {weather["main"]["temp"]}'
-
+        info['text'] = f'{str(weather["name"])}: {weather["main"]["temp"]}'
+    except:
+        info['text'] = f'Unexpected error!'
 
 root['bg'] = '#fafafa'
 root.title('Weather control')
