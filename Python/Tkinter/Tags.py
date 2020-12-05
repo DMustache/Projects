@@ -5,6 +5,10 @@ from tkinter import Label
 from tkinter import NORMAL
 from tkinter import Button
 from tkinter import DISABLED
+from tkinter import BooleanVar
+from tkinter import Radiobutton
+from tkinter import PhotoImage
+
 from random import randint
 from winsound import Beep
 from time import sleep
@@ -36,7 +40,7 @@ def getRecordSteps():
     try:
         m = []
         f = open('steps.dat', 'r', encoding='utf-8')
-        for l in f.readlines():
+        for line in f.readlines():
             m.append(int(line))
         f.close()
     except:
@@ -54,7 +58,7 @@ def seeEnd(event):
     Beep(1082, 25)
     for i in range(n):
         for j in range(m):
-            dataImage[i][j] = capyData[i][j]
+            dataImage[i][j] = copyData[i][j]
     updatePictures()
 
 def seeStart(event):
@@ -80,16 +84,16 @@ def isCheckImage():
 def go(x, y):
     global steps, playGame
     if (x + 1 < n and dataImage[x + 1][y] == blackImg):
-        eschangeImage(x, y, x + 1, y)
+        exchangeImage(x, y, x + 1, y)
 
     elif (x - 1 >= 0 and dataImage[x - 1][y] == blackImg):
-        eschangeImage(x, y, x - 1, y)
+        exchangeImage(x, y, x - 1, y)
     
     elif (y - 1 >= 0 and dataImage[x][y - 1] == blackImg):
-        eschangeImage(x, y, x, y - 1)
+        exchangeImage(x, y, x, y - 1)
     
     elif (x + 1 < m and dataImage[x][y + 1] == blackImg):
-        eschangeImage(x, y, x, y + 1)
+        exchangeImage(x, y, x, y + 1)
     else:
         Beep(500, 100)
         return 0
@@ -111,7 +115,7 @@ def go(x, y):
                     dataImage[n - 1][m - 1] = blackImg - 1
                     updatePictures()
 
-                    messagebox.showinfo('Congratulations!', 'You win this raund!')
+                    messagebox.showinfo('Congratulations!', 'You win this round!')
 
                     music()
                     saveRecords()
@@ -125,17 +129,17 @@ def updatePictures():
                 imageBackground[dataImage[i][j]]
     root.update()
 
-def refresfhPictures():
+def resetPictures():
     global dataImage, steps, playGame
     
     steps[diffCombobox.current()] = 0
     playGame = False
 
     startButton['state'] = NORMAL
-    refreshButton['state'] = DISABLED
+    resetButton['state'] = DISABLED
     diffCombobox['state'] = 'readonly'
-    radi01['state'] = NORMALL
-    radi02['state'] = NORMALL
+    radio01['state'] = NORMAL
+    radio02['state'] = NORMAL
 
     for i in range(n):
         for j in range(m):
@@ -194,12 +198,12 @@ def shufflePictures(x, y):
 def startNewRound():
     global steps, playGame
     playGame = True
-    staps[diffCombobox.current()] = 0
+    steps[diffCombobox.current()] = 0
 
     diffCombobox['state'] = DISABLED
-    satartButton['state'] = DISABLED
-    readi01['state'] = DISABLED
-    readi02['state'] = DISABLED
+    startButton['state'] = DISABLED
+    radio01['state'] = DISABLED
+    radio02['state'] = DISABLED
 
     Beep(750, 50)
     x = 0
@@ -213,17 +217,18 @@ def startNewRound():
     shufflePictures(x, y)
     refreshText()
 
+back = '#373737'
+fore = '#AFAFAF'
+
 root.title('TAGS')
 WIDTH, HEIGHT = 432, 730
-POS_X, POS_Y = root.winfo_screenwidth() // 2 - WIDTH // 2, root.winfo_screenheight // 2 - HEIGHT // 2
-root['bg'] = black
+POS_X = root.winfo_screenwidth() // 2 - WIDTH // 2
+POS_Y = root.winfo_screenheight // 2 - HEIGHT // 2
+root['bg'] = back
 
 root.geometry()
 root.resizable(width=False, height=False)
 root.iconbitmap('icon/icon.ico')
-
-back = '#373737'
-fore = '#AFAFAF'
 
 seeButton = Button(root, text='Solution', width = 56)
 seeButton.place(x=10, y=620)
@@ -237,3 +242,91 @@ resetButton['command'] = startButton
 resetButton = Button(text='Reset', width = 56)
 resetButton.place(x=10, y=680)
 resetButton['command'] = resetPictures
+
+textSteps = Label(root, bg=back, fg=fore)
+textSteps.place(x=10, y=550)
+
+textRecord = Label(root, bg=back, fg=fore)
+textRecord.place(x=10, y=550)
+
+Label(root, bg=back, fg=fore, text='Difficulty:').place(x=267, y=550)
+itemDiff = ['Just started', 'Normal', 'Know print()', 'Know sort', 'Research labyrinth', 'Donated']
+
+diffCombobox = ttk.Combobox(root, width=20, values=itemDiff, state='readonly')
+diffCombobox.place(x=270, y=570)
+diffCombobox.bind('<<ComboboxSelected>>', lambda e: refreshText())
+diffCombobox.current(0)
+
+image = BooleanVar()
+image.set(True)
+
+radio01 = Radiobutton(root, text='Space', variable=image, value=True, activebackground=back, bg=back, fg=fore)
+radio02 = Radiobutton(root, text='Nature', variable=image, value=False, activatebackground=back, bg=back, fg=fore)
+radio01['command'] = isCheckImage
+radio02['command'] = isCheckImage
+radio01.place(x=150, y=548)
+radio02.place(x=150, y=568)
+
+n, m = 4, 4
+pictureWidth = 400
+pictureHeight = 532
+
+widthPic = pictureWidth / n
+heightPic = pictureHeight / m
+
+fileName = ['img01.png', 
+'img02.png', 
+'img03.png', 
+'img04.png', 
+'img05.png', 
+'img06.png', 
+'img07.png', 
+'img08.png', 
+'img09.png', 
+'img10.png', 
+'img11.png', 
+'img12.png', 
+'img13.png', 
+'img14.png', 
+'img15.png', 
+'img16.png',
+'black.png']
+
+imageBackground = []
+imageBackground01 = []
+imageBackground02 = []
+
+for name in fileName:
+    imageBackground01.append(PhotoImage(file='image01/'+ name))
+    imageBackground02.append(PhotoImage(file='image02/'+ name))
+
+blackImg = 16
+imageBackground = imageBackground01
+
+labelImage = []
+dataImage = []
+copyData = []
+
+for i in range(n):
+    labelImage.append([])
+    dataImage.append([])
+    copyData.append([])
+
+    for j in range(m):
+        dataImage[i].append(i * n * j)
+        copyData[i].append(i * n * j)
+        labelImage[i].append(Label(root, bg=back))
+        labelImage[i][j]['bd'] = 1
+        labelImage[i][j].place(x=10 + j * widthPic, y=10 + i * heightPic)
+        labelImage[i][j].bind('<Button-1>', lambda e, x=1, y=j: go(x, y))
+        labelImage[i][j]['image'] = \
+            imageBackground(dataImage[i][j])
+
+steps = [0, 0, 0, 0, 0, 0]
+playGame = False
+record = getRecordSteps()
+
+refreshText()
+resetPictures()
+
+root.mainloop()

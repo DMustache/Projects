@@ -51,4 +51,4 @@ async def pika(ctx):
     embed.set_image(url = json_data['link'])
     await ctx.send(embed = embed)
 
-bot.run('')
+bot.run('NzcyMDgxMTA5OTY5NjY2MDU4.X51ekQ.H8Waf4GdCiDg1WnZj4-xwE6Vm1c')
