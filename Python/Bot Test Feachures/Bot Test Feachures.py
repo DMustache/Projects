@@ -1,10 +1,13 @@
 # https://discord.com/api/oauth2/authorize?client_id=772081109969666058&permissions=0&redirect_uri=https%3A%2F%2Fdiscord.com%2Fapi%2Foauth2%2Fauthorize%3Fclient_id%3D772081109969666058%26permissions%3D8%26redirect_uri%3Dhttps%253A%252F%252Fdiscord.com%252Fapi%252Foauth2%252Fauthorize%253Fclient_id%253D772081&scope=bot
+import json
+from random import randint
+
 import discord
+import requests
 from discord.ext import commands
 
-import json
-import requests
-from random import randint
+with open('Python/Bot Test Feachures/settings.txt', 'r') as settings:
+    hiddentoken = settings.read()
 
 bot = commands.Bot(command_prefix='#')
 
@@ -51,4 +54,4 @@ async def pika(ctx):
     embed.set_image(url = json_data['link'])
     await ctx.send(embed = embed)
 
-bot.run('NzcyMDgxMTA5OTY5NjY2MDU4.X51ekQ.H8Waf4GdCiDg1WnZj4-xwE6Vm1c')
+bot.run(hiddentoken)
