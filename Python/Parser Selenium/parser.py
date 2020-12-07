@@ -11,8 +11,8 @@ class ProgHubParser(object):
 
     
     def go_to_questions_page(self):
-        self.driver.get('https://proghub.ru/tests')
-        blocks = self.driver.find_elements_by_class_name('testCard')
+        self.driver.get('https://www.pinterest.ru/')
+        blocks = self.driver.find_elements_by_class_name('Yl- MIw Hb7')
 
         for elem in blocks:
             print(elem.get_attribute('href'))

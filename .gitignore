@@ -32,7 +32,6 @@
 *.lib
 
 # Executables
-*.exe
 *.out
 *.app
 
@@ -801,3 +800,6 @@ MigrationBackup/
 ЕГЭ/ЕГЭ 27/data.txt
 /txt
 Python/Bot Test Feachures/settings.txt
+.Other/SFML/Resources/SFML-2.5.1/examples/
+Cpp/**.exe
+ЕГЭ/**/**.exe
