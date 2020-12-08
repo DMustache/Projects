@@ -1,6 +1,10 @@
 import sys
 import pyglet
-from pyglet.gl import *
+from pyglet.gl import glViewport, glMatrixMode
+from pyglet.gl import glLoadIdentity, gluPerspective
+from pyglet.gl import GL_MODELVIEW, GL_PROJECTION, GL_LINE_STRIP
+from pyglet.gl import glTranslatef, glBegin, glEnd
+from pyglet.gl import glVertex3f
 from noise import pnoise1
 window = pyglet.window.Window(visible=False, resizable=True)
 
