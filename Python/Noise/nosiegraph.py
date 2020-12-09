@@ -9,7 +9,6 @@ from noise import pnoise1
 window = pyglet.window.Window(visible=False, resizable=True)
 
 def on_resize(width, height):
-	"""Setup 3D viewport"""
 	glViewport(0, 0, width, height)
 	glMatrixMode(GL_PROJECTION)
 	glLoadIdentity()
