@@ -10,19 +10,19 @@ int main ()
     int minRoad, varUp, varDown, i;
     cin >> iteration;
     cin >> time;
-    iterationTime = 0; 
+    iterationTime = 0;
     minRoad = time;
-    for (int i = 0; i < iteration; i++) 
+    for (int i = 0; i < iteration; i++)
     {
         cin >> timerUp >> timerDown;
         iterationTime = iterationTime + timerUp;
         varUp = minRoad + timerDown;
         varDown = iterationTime + time;
-        if (varUp < varDown) 
+        if (varUp < varDown)
             minRoad = varUp;
-        else 
+        else
             minRoad = varDown;
     }
     cout << minRoad << endl;
-    return 0;   
+    return 0;
 }

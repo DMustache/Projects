@@ -8,3 +8,5 @@
 каталоги библиотек
 
 https://dt-window.mos.ru/feedback/history/1536834/67315e466ab3ef506a0e624377198f85?iframe=1
+python -u "c:\Users\Dmitry\Documents\Projects\Python\Noise\atmosphere.py"
+cd C:\Users\Dmitry\Documents\Projects\Python\Noise
