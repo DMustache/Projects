@@ -15,7 +15,7 @@ int main()
         int cureslice = i % 6;
         if (tmp > maxpairs[cureslice][0])
             maxpairs[cureslice][1] = maxpairs[cureslice][0], maxpairs[cureslice][0] = tmp;
-        
+
         else if(tmp == maxpairs[cureslice][0])
             maxpairs[cureslice][i] = maxpairs[cureslice][0];
     }

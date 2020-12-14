@@ -1,12 +1,3 @@
-
-"""Offline procedural planet texture generator using Perlin noise
-A 2D atmospheric texture is generated at startup and stored.
-This is then used to shade the planet sphere with simple lighting.
-The mouse can be used to rotate the planet axis. Notice the
-pinching distortion near the poles due to the texture wrapping.
-requires pyglet 1.1+ and ctypes
-"""
-
 import os
 import math
 import pyglet
@@ -41,7 +32,7 @@ def create_bands_texture(bands=14.0, stretch=2.0, turbulence=8.0,
 			texel[(x + (y * TEXTURE_SIZE))*3 + 1] = max(min(int(g * 255.0), 255), 0)
 			texel[(x + (y * TEXTURE_SIZE))*3 + 2] = max(min(int(b * 255.0), 255), 0)
 	glPixelStorei(GL_UNPACK_ALIGNMENT, 1)
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, TEXTURE_SIZE, TEXTURE_SIZE, 0, 
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, TEXTURE_SIZE, TEXTURE_SIZE, 0,
 		GL_RGB, GL_UNSIGNED_BYTE, ctypes.byref(texel))
 	return texel
 

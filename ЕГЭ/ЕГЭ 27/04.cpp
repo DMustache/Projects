@@ -1,28 +1,37 @@
-//https://inf-ege.sdamgia.ru/problem?id=7321
 #include <iostream>
-
 using namespace std;
-
-int main ()
+int main()
 {
-    int iteration;
-    int time, timerUp, timerDown, iterationTime;
-    int minRoad, varUp, varDown, i;
-    cin >> iteration;
-    cin >> time;
-    iterationTime = 0;
-    minRoad = time;
-    for (int i = 0; i < iteration; i++)
+    int s = 9; //между элементами
+    int n;
+    int h1 = 0, h2 = 0, h3 = 0, h4 = 0;
+    int tmp; // новое значение
+    int cnt; //кол-во пар
+    cin >> n;
+    cnt = 0;
+    for (int i = 0; i < n; ++i)
     {
-        cin >> timerUp >> timerDown;
-        iterationTime = iterationTime + timerUp;
-        varUp = minRoad + timerDown;
-        varDown = iterationTime + time;
-        if (varUp < varDown)
-            minRoad = varUp;
-        else
-            minRoad = varDown;
+        cin >> tmp;
+        if (i >= s)
+        {
+            if (tmp % 29 == 0)
+            {
+                cnt += i - s + 1;
+            }
+            else
+            {
+                cnt += h4;
+            }
+        }
+        h4 = h3;
+        h3 = h2;
+        h2 = h1;
+
+        if (tmp % 29 == 0)
+        {
+            h1 += 1;
+        }
     }
-    cout << minRoad << endl;
+    cout << cnt;
     return 0;
 }
