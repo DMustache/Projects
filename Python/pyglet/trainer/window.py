@@ -1,9 +1,21 @@
+from pyglet.window import Window
+from pyglet import window
 import pyglet
 
-window = pyglet.window.Window(1200, 720, resizable=True)
+win = window.Window(caption='Initial caption')
 
-@window.event
-def on_resize(width, height):
-    print('the window was resized to %dx%d' % (width, height))
+class HelloWorldWindow(pyglet.window.Window):
+    def __init__(self):
+        super(HelloWorldWindow, self).__init__()
 
-pyglet.app.run()
+        self.label = pyglet.text.Label('Hello World!')
+        self.set_icon = pyglet.image.load('trainer/007-pomatinyas.png')
+
+    def on_draw(self):
+        self.clear()
+        self.label.draw()
+        self.set_icon()
+
+if __name__ == '__main__':
+    window = HelloWorldWindow()
+    pyglet.app.run()
