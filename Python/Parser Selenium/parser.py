@@ -4,12 +4,12 @@ class ProgHubParser(object):
 
     def __init__(self, driver, lang):
         self.driver = driver
-        self.lang = lang 
+        self.lang = lang
 
     def parse(self):
         self.go_to_questions_page()
 
-    
+
     def go_to_questions_page(self):
         self.driver.get('https://www.pinterest.ru/')
         blocks = self.driver.find_elements_by_class_name('Yl- MIw Hb7')
@@ -19,7 +19,7 @@ class ProgHubParser(object):
 
 def main():
     driver = webdriver.Chrome()
-    
+
     parser = ProgHubParser(driver, 'python')
     parser.parse()
 

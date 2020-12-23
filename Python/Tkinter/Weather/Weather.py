@@ -4,7 +4,7 @@ from tkinter import Canvas
 from tkinter import Frame
 from tkinter import Label
 from tkinter import Entry
-from tkinter import Button 
+from tkinter import Button
 import requests
 
 root = Tk()
@@ -19,7 +19,7 @@ def get_weather():
         params = {'APPID': key, 'q': city, 'units': 'metric'}
         result = requests.get(url, params=params)
         weather = result.json()
-    
+
         info['text'] = f'{str(weather["name"])}: {weather["main"]["temp"]}'
     except:
         info['text'] = f'Unexpected error!'
