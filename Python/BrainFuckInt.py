@@ -1,43 +1,20 @@
-def block(code):
-    opened = []
-    blocks = {}
-    for i in range(len(code)):
-        if code[i] == '[':
-            opened.append(i)
-        elif code[i] == ']':
-            blocks[i] = opened[-1]
-            blocks[opened.pop()] = i
-    return blocks
+def main():
+    fifi=100
+    arr=[]
+    m1=0
+    for i in range (100,1000):
+        arr.append(str(i))
+        m1+=1
+    print(m1)
+    print(arr)
+    m=0
+    for fifi in arr:
 
-def parse(code):
-    return ''.join(c for c in code if c in '><+-.,[]')
 
-def run(code):
-    code = parse(code)
-    x = i = 0
-    bf = {0: 0}
-    blocks = block(code)
-    l = len(code)
-    while i < l:
-        sym = code[i]
-        if sym == '>':
-            x += 1
-            bf.setdefault(x, 0)
-        elif sym == '<':
-            x -= 1
-        elif sym == '+':
-            bf[x] += 1
-        elif sym == '-':
-            bf[x] -= 1
-        elif sym == '.':
-            print(chr(bf[x]), end='')
-        elif sym == ',':
-            bf[x] = int(input('Input: '))
-        elif sym == '[':
-            if not bf[x]: i = blocks[i]
-        elif sym == ']':
-            if bf[x]: i = blocks[i]
-        i += 1
+        if (fifi[0]==fifi[1] or fifi[0]==fifi[2] or fifi[1]==fifi[2]) and not(fifi[0]==fifi[1]==fifi[2]) :
+            m+=1
+            print(fifi)
 
-code = input()
-run(code)
+    print(m/m1)
+if __name__ == '__main__':
+    main()

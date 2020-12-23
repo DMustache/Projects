@@ -20,7 +20,7 @@ int main()
         }
 
         else if(tmp == maxpairs[cureslice][0])
-            maxpairs[cureslice][i] = maxpairs[cureslice][0];
+            maxpairs[cureslice][1] = maxpairs[cureslice][0];
     }
     int res = -1;
     for(int i = 0; i < 6; i++)
