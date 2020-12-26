@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import glooey
 import pyglet
 
@@ -29,3 +31,4 @@ form.push_handlers(on_unfocus=lambda w: print(f"Form input: '{w.text}'"))
 gui.add(form)
 
 pyglet.app.run()
+
