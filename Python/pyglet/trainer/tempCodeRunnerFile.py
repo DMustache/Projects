@@ -1,1 +1,1 @@
-    Background = glooey.Image
+BlueRectangle

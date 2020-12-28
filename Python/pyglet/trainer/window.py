@@ -187,38 +187,104 @@ class WesnothForm(glooey.Form):
         custom_right = pyglet.resource.image('form_right.png')
 # WesnothForm
 
+class BlueRectangle(glooey.Widget):
+    custom_alignment = 'center'
+    custom_size_hint = 300, 200
+
+    def __init__(self):
+        super().__init__()
+        self.vertex_list = None
+
+    def do_claim(self):
+        return 0, 0
+
+    def do_draw(self):
+        vertices = (
+                self.rect.bottom_left.tuple +
+                self.rect.bottom_right.tuple +
+                self.rect.top_right.tuple +
+                self.rect.top_left.tuple
+        )
+        blue = 1, 71, 108
+
+        if self.vertex_list is None:
+            self.vertex_list = self.batch.add(
+                    4, pyglet.gl.GL_QUADS, self.group,
+                    ('v2f', vertices), ('c3B', 4 * blue)
+            )
+        else:
+            self.vertex_list.vertices = vertices
+
+    def do_undraw(self):
+        if self.vertex_list is not None:
+            self.vertex_list.delete()
+            self.vertex_list = None
+# BlueRectangle
+
+class SpriteDemo(glooey.Widget):
+    custom_alignment = 'center'
+
+    def __init__(self):
+        super().__init__()
+        self.sprite = None
+
+    def do_claim(self):
+        return 200, 200
+
+    def do_regroup(self):
+        if self.sprite is not None:
+            self.sprite.batch = self.batch
+            self.sprite.group = self.group
+
+    def do_draw(self):
+        if self.sprite is None:
+            self.sprite = pyglet.sprite.Sprite(
+                    img=pyglet.image.load('wesnoth_logo.png'),
+                    x=self.rect.left,
+                    y=self.rect.bottom,
+                    batch=self.batch,
+                    group=self.group,
+            )
+        else:
+            self.sprite.set_position(
+                    x=self.rect.left,
+                    y=self.rect.bottom,
+            )
+
+    def do_undraw(self):
+        if self.sprite is not None:
+            self.sprite.delete()
+            self.sprite = None
+# SpiritDemo
+
 window = pyglet.window.Window()
 gui = glooey.Gui(window)
 
 border = WesnothBorder()
 gui.add(border)
 
+demo = BlueRectangle()
+gui.add(demo)
+gui.push_handlers(on_click=lambda w: demo.unhide() if demo.is_hidden else demo.hide())
+
+dlogo = SpriteDemo()
+gui.add(dlogo)
+
 scroll = WesnothScrollBox()
 scroll.add(WesnothLoremIpsum())
 scroll.alignment = 'top right'
 gui.add(scroll)
-scroll.push_handlers(
-    on_mouse_scroll=lambda x, y, scroll_x, scroll_y:
-        print(f'{scroll} mouse scrolled {x} {y} {scroll_x} {scroll_y}'),
-    on_click=lambda scroll:
-        print(f'{scroll} was clicked'),
-    on_mouse_drag=lambda x, y, dx, dy, buttons, modifires:
-        print(f'{scroll} {x} {y} {dx} {dy} {buttons} {modifires}'))
 
 button = WesnothButton('Button')
 button.alignment = 'top left'
 gui.add(button)
-button.push_handlers(on_click=lambda button: print(f'{button} was clicked'))
 
 checkbox = WesnothLabeledCheckbox('Toggle something')
 checkbox.alignment = 'bottom left'
 gui.add(checkbox)
-checkbox.push_handlers(on_toggle=lambda w:
-        print(f"{w} {'checked' if w.is_checked else 'unchecked'}"))
 
 form = WesnothForm()
 gui.add(form)
-form.push_handlers(on_unfocus=lambda w:print(f"Form input: '{w.text}'"))
 
 dialog = WesnothDialog()
 WesnothLabel.custom_alignment = 'top left'
@@ -228,6 +294,7 @@ WesnothLabel.custom_left_padding = 17
 dialog.add(WesnothLabel('Буиш Учиться? Если нет, то дам по жопе и отключу интернет', line_wrap=200))
 dialog.size_hint = 300, 100
 dialog.open(gui)
-dialog.push_handlers(on_click=lambda dialog: print(f'{dialog} clicked'))
+
+
 
 pyglet.app.run()
