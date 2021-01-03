@@ -221,41 +221,41 @@ class BlueRectangle(glooey.Widget):
             self.vertex_list = None
 # BlueRectangle
 
-class SpriteDemo(glooey.Widget):
-    custom_alignment = 'center'
+# class SpriteDemo(glooey.Widget):
+#     custom_alignment = 'center'
 
-    def __init__(self):
-        super().__init__()
-        self.sprite = None
+#     def __init__(self):
+#         super().__init__()
+#         self.sprite = None
 
-    def do_claim(self):
-        return 200, 200
+#     def do_claim(self):
+#         return 200, 200
 
-    def do_regroup(self):
-        if self.sprite is not None:
-            self.sprite.batch = self.batch
-            self.sprite.group = self.group
+#     def do_regroup(self):
+#         if self.sprite is not None:
+#             self.sprite.batch = self.batch
+#             self.sprite.group = self.group
 
-    def do_draw(self):
-        if self.sprite is None:
-            self.sprite = pyglet.sprite.Sprite(
-                    img=pyglet.image.load('wesnoth_logo.png'),
-                    x=self.rect.left,
-                    y=self.rect.bottom,
-                    batch=self.batch,
-                    group=self.group,
-            )
-        else:
-            self.sprite.set_position(
-                    x=self.rect.left,
-                    y=self.rect.bottom,
-            )
+#     def do_draw(self):
+#         if self.sprite is None:
+#             self.sprite = pyglet.sprite.Sprite(
+#                     img=pyglet.image.load('wesnoth_logo.png'),
+#                     x=self.rect.left,
+#                     y=self.rect.bottom,
+#                     batch=self.batch,
+#                     group=self.group,
+#             )
+#         else:
+#             self.sprite.set_position(
+#                     x=self.rect.left,
+#                     y=self.rect.bottom,
+#             )
 
-    def do_undraw(self):
-        if self.sprite is not None:
-            self.sprite.delete()
-            self.sprite = None
-# SpiritDemo
+#     def do_undraw(self):
+#         if self.sprite is not None:
+#             self.sprite.delete()
+#             self.sprite = None
+# # SpiritDemo
 
 window = pyglet.window.Window()
 gui = glooey.Gui(window)
@@ -266,9 +266,6 @@ gui.add(border)
 demo = BlueRectangle()
 gui.add(demo)
 gui.push_handlers(on_click=lambda w: demo.unhide() if demo.is_hidden else demo.hide())
-
-dlogo = SpriteDemo()
-gui.add(dlogo)
 
 scroll = WesnothScrollBox()
 scroll.add(WesnothLoremIpsum())
