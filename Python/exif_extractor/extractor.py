@@ -4,7 +4,7 @@ import exifread
 import pprint
 
 Tk().withdraw()
-f = FileDialog()
+f = open('Python\exif_extractor\thumb_630.jpg')
 
 tags = exifread.process_file(f)
 print(tags.keys())
