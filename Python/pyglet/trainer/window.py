@@ -292,6 +292,4 @@ dialog.add(WesnothLabel('Буиш Учиться? Если нет, то дам �
 dialog.size_hint = 300, 100
 dialog.open(gui)
 
-
-
 pyglet.app.run()
