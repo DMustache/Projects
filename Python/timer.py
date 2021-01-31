@@ -1,11 +1,6 @@
-import random
-import math
-import turtle
-import time
 import tkinter
 from tkinter import *
 from tkinter import Tk
-import Tkinter
 from Tkinter import *
 
 root = tkinter.Tk()
