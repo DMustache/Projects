@@ -44,6 +44,9 @@ with open('Python\\Алгоритмы\\abstract classes\\Школьное Шиф
 findWords = [x.strip() for x in findWords]
 f.close()
 
+for word in findWords:
+    letter = letter.replace(word, f' {word} ')
+
 f = open('Python\\Алгоритмы\\abstract classes\\Школьное Шифрование\\newCOPY.txt', 'w', encoding='utf-8')
 f.write(letter)
 f.close()

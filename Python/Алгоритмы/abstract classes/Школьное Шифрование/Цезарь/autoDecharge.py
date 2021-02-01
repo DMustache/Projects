@@ -1,6 +1,3 @@
-import abc
-
-
 f = open(r'Python\Алгоритмы\abstract classes\Школьное Шифрование\text.txt', mode='r', encoding='utf-8')
 letter = f.read()
 f.close()
@@ -9,4 +6,4 @@ abcToChange = [' ',' ',' ',' ','д',' ','й',' ',' ',' ',' ',' ','м',' ','о','
 disusedABC = ['дйможия']
 
 for i in abc:
-    if 
+    if i not in disusedABC:
