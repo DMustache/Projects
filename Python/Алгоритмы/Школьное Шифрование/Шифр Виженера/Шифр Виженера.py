@@ -1,4 +1,4 @@
-abc = 'abcdefghijklmnopqrstuvwxyz'
+abc = str(input())#'abcdefghijklmnopqrstuvwxyz'
 
 abcMap = [['' for i in range(len(abc))] for j in range(len(abc))]
 for i in range(len(abc)):

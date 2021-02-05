@@ -2,14 +2,14 @@ abc = ['а','б','в','г','д','е','ж','з','и','й','к','л','м','н','о
 specs = ' ,.:;-!?)('
 
 
-sentense = [i.lower() for i in 'Пронеслась гроза седая']
+sentense = [i.lower() for i in str(input())]#'Пронеслась гроза седая']
 
 for i in specs:
     while sentense.count(i) > 0:
         sentense.pop(sentense.index(i))
 sentense = ''.join(sentense)
 
-key = 'компас'
+key = str(input())#'компас'
 addSymbol = 'х'
 preList = ['','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','']
 
@@ -64,9 +64,9 @@ def takeIndex(code):
 def Check(indexF, indexS):
     global codeList
     if indexF[0][1] == indexS[0][1]: #collumn
-        (indexF[0][0] + 3) % 4, (indexS[0][0] + 3) % 4
+        indexF[0][0], indexS[0][0] = (indexF[0][0] + 1) % 4, (indexS[0][0] + 1) % 4
     elif indexF[0][0] == indexS[0][0]: #line
-        (indexF[0][1] + 7) % 8, (indexS[0][1] + 7) % 8
+        indexF[0][1], indexS[0][1] = (indexF[0][1] + 1) % 8, (indexS[0][1] + 1) % 8
     else: #square
         buf = indexF[0][1]
         indexF[0][1] = indexS[0][1]
