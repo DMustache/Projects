@@ -9,7 +9,7 @@ codeLen = int(input())
 indexes = []
 for i in range(codeLen):
     indexes.append([int(j) for j in input().split()])
-
+    print(indexes)
 
 answer = []
 for i in range(len(indexes)):

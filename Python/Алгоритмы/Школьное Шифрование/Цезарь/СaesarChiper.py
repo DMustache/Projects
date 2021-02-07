@@ -1,33 +1,32 @@
-Alphabet = "абвгдежзийклмнопрстуфхцчшщъыьэюя"
+abc = "абвгдежзийклмнопрстуфхцчшщъыьэюя"
 
-def Encrypt(word):
-    global NewAlphabet, Alphabet
-    ans = ''
-    for i in word:
-        ans += NewAlphabet[Alphabet.index(i)]
+code = 'вшгшвылыешхдшцбюбдуфуьчшауауегуяву'
+key = 'трамп'
+
+def deChipher(code, shifter):
+    global abc
+
+    ans = ""
+    for i in code:
+        ans += abc[(abc.index(i) + shifter) % len(abc)]
     return ans
 
-word = input()
-Fpart, Spart = map(int, input().split())
+shifter = []
+answer = []
+for i in range(len(abc) // 2):
+    if key in deChipher(code, i) and deChipher(code, i) not in answer:
+        print(deChipher(code, i), i)
+        answer.append(deChipher(code, i))
+        shifter.append(i)
 
-codeList = ['','','','']
-for symbol in range(0, Fpart):
-    codeList[1] += Alphabet[symbol]
+    if key in deChipher(code, i * (-1)) and deChipher(code, i * (-1)) not in answer:
+        print(deChipher(code, i * (-1)), i * (-1))
+        answer.append(deChipher(code, i * (-1)))
+        shifter.append(i)
 
-for symbol in range(Fpart, (Fpart * 2 + (Spart // 2) + 1) // 2):
-    codeList[0] += Alphabet[symbol]
-
-windex = ((Fpart * 2 + (Spart // 2) + 1) // 2)
-while len(codeList[3]) != len(codeList[0]):
-    codeList[3] += Alphabet[windex]
-    windex += 1
-
-for symbol in range(Fpart + (Spart // 2) + 1, len(Alphabet)):
-    codeList[2] += Alphabet[symbol]
-
-NewAlphabet = ''
-for lst in range(4):
-    NewAlphabet += codeList[lst]
-NewAlphabet *= 2
-
-print(Encrypt(word))
+if len(answer) != 1:
+    print('ERROR')
+else:
+    print(shifter[0])
+    print(*answer)
+print(len(abc))
