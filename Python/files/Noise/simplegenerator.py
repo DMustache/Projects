@@ -56,4 +56,4 @@ def noiser05():
 frequencies = range(1, 31)  # [1, 2, ..., 30]
 
 mapsize = 10
-noiser05()
+noiser02()
