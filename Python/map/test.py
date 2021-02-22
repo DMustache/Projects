@@ -1,6 +1,5 @@
 from math import pi, cos, sin
-import curses, locale, random
-
+import curses, locale, random, subprocess
 
 POS_X, POS_Y, POS_A = 2, 2, 0
 user_angle = pi / 2
@@ -17,31 +16,33 @@ def createMap(MAP):
         for i in range(len(noise) - 1):
             output.append(min(noise[i], noise[i + 1]))
         return output
+
     global numList
-    for i in range(50):
+    for i in range(20):
         random.seed(i)
         noise = [random.randint(1, 2) for i in range(mapsize)]
         numList.append(adjacent_min(noise))
-    counter = 0
+
     for i in range(len(numList)):
-        for j in range(len(numList)):
-            try:
-                if numList[i][j] == 1:
-                    MAP += '.'
-                    if len(MAP) % 50 + counter == 0:
-                        counter += 1
-                        MAP += '\n'
-                else:
-                    MAP += '#'
-                    if len(MAP) % 50 + counter == 0:
-                        counter += 1
-                        MAP += '\n'
-            except IndexError:
-                continue
+        for j in range(len(numList[0])):
+            if j == 0:
+                MAP += '\n'
+
+            if numList[i][j] == 1:
+                MAP += '.'
+            else:
+                MAP += '#'
+
     return MAP
 
 MAP = ''
 MAP = createMap(MAP)
+
+f = open(r'txt.txt', mode='w')
+f.write(MAP)
+f.close()
+
+subprocess.Popen(['notepad.exe', r'txt.txt'])
 
 def make_map(string_map):
     rows = string_map.strip().split('\n')
