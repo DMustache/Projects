@@ -15,7 +15,7 @@ class boo():
         return int(not(x))
 
     def fc(x, y):
-        return boo.impl(boo.remaind(x, a), (boo.no(boo.remaind(x, 8)) or boo.remaind(x, 30)))
+        return boo.impl(boo.remaind(x, y) and boo.remaind(x, 20), boo.remaind(x, 30))
 
     def equation(y, x, a):
         return boo.impl((120 == 2 * y + 3 * x), ((a < x) or (a < y)))
@@ -53,7 +53,6 @@ def booeq():
         else:
             print(a)
             b = False
-
 def eq():
     b = True
     a = 0
