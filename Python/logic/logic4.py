@@ -15,7 +15,7 @@ class boo():
         return int(not(x))
 
     def fc(x, y):
-        return boo.impl(boo.remaind(x, y) and boo.remaind(x, 20), boo.remaind(x, 30))
+        return boo.impl(boo.no(boo.remaind(x, y)), boo.no(boo.remaind(x, 8) or boo.no(boo.remaind(x, 12))))
 
     def equation(y, x, a):
         return boo.impl((120 == 2 * y + 3 * x), ((a < x) or (a < y)))
@@ -39,10 +39,10 @@ def convertNum(base, s):
 
 def booeq():
     b = True
-    a = 0
+    a = 2048
     while b:
-        a += 1
-        lst = [i for  i in range(1, 512)]
+        a -= 1
+        lst = [i for  i in range(1, 256)]
         for i in range(len(lst)):
             if boo.fc(lst[i], a):
                 continue
@@ -53,6 +53,7 @@ def booeq():
         else:
             print(a)
             b = False
+booeq()
 def eq():
     b = True
     a = 0
